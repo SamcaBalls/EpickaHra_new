@@ -13,12 +13,15 @@ public class baterkaBububu : MonoBehaviour
     private float timeLimit = 5f;
     private float currentTime = 0f;
     private AudioSource aud;
-    
+    public bool playAudio = false;
+    private bool canFlash = true;
+    private int flashesCount;
 
     private void Start()
     {
         currentTime = timeLimit;
         aud = GetComponent<AudioSource>();
+        Gambler.FlashesCountChanged += UpdateFlashesCount;
     }
     void Update()
     {
@@ -35,7 +38,7 @@ public class baterkaBububu : MonoBehaviour
         {
                 flashEvent();   
         }
-        if(Mathf.Approximately(gambler.transform.rotation.eulerAngles.y, 90f) && Input.GetButtonDown("Fire1") && flashingPosition == true)
+        if(Mathf.Approximately(gambler.transform.rotation.eulerAngles.y, 90f) && Input.GetButtonDown("Fire1") && canFlash == true)
         {
             StartCoroutine(Flash());
         }
@@ -153,16 +156,26 @@ public class baterkaBububu : MonoBehaviour
     }
     IEnumerator Flash()
     {
+        canFlash = false;
         Debug.Log("flashing...");
-        flashingPosition = false;
         yield return new WaitForSeconds(1);
         aud.Play();
+        playAudio = true;
         obluda.transform.position = new Vector3(0, 0, 30);
         aktualniPozice = 0;
+        currentTime = timeLimit;
+        canFlash = true;
+        flashesCount--;
+        flashingPosition = false;
     }
     private void JumpScare()
     {
         Debug.Log("Prohrál jsi");
+    }
+    private void UpdateFlashesCount(int newFlashesCount)
+    {
+        flashesCount = newFlashesCount;
+        Debug.Log("Nový poèet flashù: " + flashesCount);
     }
 }
 

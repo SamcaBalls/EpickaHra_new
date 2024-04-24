@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SmoothRotation : MonoBehaviour
 {
-    public float rotationAmount = 90f; 
-    public float rotationSpeed = 4f; 
+    private float rotationAmount = 90f; 
+    private float rotationSpeed = 4f; 
 
     private bool isRotating = false;
     private Quaternion targetRotation; 

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Gambler : MonoBehaviour
 {
+    public static event Action<int> FlashesCountChanged;
     private bool canGamble = true;
     public GameObject gamblerO;
     private Animator animator;
@@ -12,18 +13,24 @@ public class Gambler : MonoBehaviour
     private int flashesCount = 3;
     private int pocetGembleni;
     private int generovaneCislo = 10;
-    private AudioSource audi;
-    // Start is called before the first frame update
+    public int FlashesCount
+    {
+        get { return flashesCount; }
+        private set
+        {
+            flashesCount = value;
+            FlashesCountChanged?.Invoke(flashesCount); 
+        }
+    }
     void Start()
     {
         animator = automat.GetComponent<Animator>();
-        audi = GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(MusicAmb());
         if (Input.GetButtonDown("Fire1") && canGamble == true && gamblerO.transform.rotation.y == 0) 
         {
             Gamble();
@@ -38,11 +45,7 @@ public class Gambler : MonoBehaviour
             pocetGembleni = 0;
         }
     }
-        IEnumerator MusicAmb()
-        {
-            yield return new WaitForSeconds(47);
-            audi.Play();
-        }
+        
     IEnumerator GambleCooldown()
     {
         canGamble = false;
