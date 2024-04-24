@@ -146,13 +146,16 @@ public class baterkaBububu : MonoBehaviour
         if (currentTime <= 0f)
         {
             JumpScare();
+        } else
+        {
+            Flash();
         }
     }
     IEnumerator Flash()
     {
         Debug.Log("flashing...");
-        yield return new WaitForSeconds(1);
         flashingPosition = false;
+        yield return new WaitForSeconds(1);
         aud.Play();
         obluda.transform.position = new Vector3(0, 0, 30);
         aktualniPozice = 0;
