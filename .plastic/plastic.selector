@@ -1,0 +1,4 @@
+repository "Epicka Hra@Samca@cloud"
+  path "/"
+    br "/main"
+    co "/main"
