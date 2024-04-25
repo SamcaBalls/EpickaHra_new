@@ -16,7 +16,6 @@ public class baterkaBububu : MonoBehaviour
     public bool playAudio = false;
     private bool canFlash = true;
     private int flashesCount;
-    private Gambler gembl;
 
     private void Start()
     {
@@ -25,7 +24,6 @@ public class baterkaBububu : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(gembl.FlashesCount);
         if(Input.GetButtonDown("Fire1") && canGamble == true && gambler.transform.rotation.y == 0)
         {
             pocetZagembleni++;
