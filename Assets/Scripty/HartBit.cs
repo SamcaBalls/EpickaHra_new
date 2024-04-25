@@ -5,11 +5,11 @@ using UnityEngine;
 public class HartBit : MonoBehaviour
 {
     private baterkaBububu baterka;
-    private AudioSource audio;
+    private AudioSource audio1;
     // Start is called before the first frame update
     void Start()
     {
-        audio = GetComponent<AudioSource>();
+        audio1 = GetComponent<AudioSource>();
         baterka = FindObjectOfType<baterkaBububu>();
     }
 
@@ -26,6 +26,6 @@ public class HartBit : MonoBehaviour
         baterka.playAudio = false;
         yield return new WaitForSeconds(1);
         Debug.Log("hraju hart bít");
-        audio.Play();
+        audio1.Play();
     }
 }

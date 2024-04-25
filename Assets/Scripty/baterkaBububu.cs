@@ -37,7 +37,7 @@ public class baterkaBububu : MonoBehaviour
         {
                 flashEvent();   
         }
-        if(Mathf.Approximately(gambler.transform.rotation.eulerAngles.y, 90f) && Input.GetButtonDown("Fire1") && canFlash == true && flashesCount > 0)
+        if(Mathf.Approximately(gambler.transform.rotation.eulerAngles.y, 90f) && Input.GetButtonDown("Fire1") && canFlash == true)
         {
             StartCoroutine(Flash());
         }
@@ -45,7 +45,7 @@ public class baterkaBububu : MonoBehaviour
     IEnumerator GambleCooldown()
     {
         canGamble = false;
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(3);
         canGamble = true;
     }
 
