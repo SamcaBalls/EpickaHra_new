@@ -438,7 +438,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obluda: {fileID: 643212494}
   gambler: {fileID: 1022680929}
-  playAudio: 0
 --- !u!82 &643212497
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1333,6 +1332,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae135b15db48e84b95ceeea4baf1bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationAmount: 90
+  rotationSpeed: 4
 --- !u!114 &1022680936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1345,6 +1346,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f18030ead7a474e80b0e851d94853e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baterka: {fileID: 0}
+  audio1: {fileID: 0}
 --- !u!82 &1022680937
 AudioSource:
   m_ObjectHideFlags: 0

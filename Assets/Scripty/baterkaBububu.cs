@@ -16,16 +16,16 @@ public class baterkaBububu : MonoBehaviour
     public bool playAudio = false;
     private bool canFlash = true;
     private int flashesCount;
+    private Gambler gembl;
 
     private void Start()
     {
         currentTime = timeLimit;
         aud = GetComponent<AudioSource>();
-        Gambler.FlashesCountChanged += UpdateFlashesCount;
     }
     void Update()
     {
-        Debug.Log(flashesCount);
+        Debug.Log(gembl.FlashesCount);
         if(Input.GetButtonDown("Fire1") && canGamble == true && gambler.transform.rotation.y == 0)
         {
             pocetZagembleni++;
@@ -173,10 +173,6 @@ public class baterkaBububu : MonoBehaviour
     {
         Debug.Log("Prohrál jsi");
     }
-    private void UpdateFlashesCount(int newFlashesCount)
-    {
-        flashesCount = newFlashesCount;
-        Debug.Log("Nový poèet flashù: " + flashesCount);
-    }
+
 }
 
