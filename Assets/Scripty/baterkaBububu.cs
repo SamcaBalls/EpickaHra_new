@@ -7,7 +7,7 @@ public class baterkaBububu : MonoBehaviour
     public GameObject obluda;
     public GameObject gambler;
     private bool canGamble = true;
-    private int pocetZagembleni = 0;
+    public int pocetZagembleni = 0;
     private int aktualniPozice = 0;
     private bool flashingPosition = false;
     private float timeLimit = 5f;
@@ -24,10 +24,11 @@ public class baterkaBububu : MonoBehaviour
     }
     void Update()
     {
+        Debug.Log(pocetZagembleni);
         if(Input.GetButtonDown("Fire1") && canGamble == true && gambler.transform.rotation.y == 0)
-        {
-            pocetZagembleni++;
+        {          
             StartCoroutine(GambleCooldown());
+            pocetZagembleni++;
         }
         if(pocetZagembleni == 3)
         {
@@ -35,7 +36,7 @@ public class baterkaBububu : MonoBehaviour
         }
         if (flashingPosition == true)
         {
-                flashEvent();   
+            flashEvent();   
         }
         if(Mathf.Approximately(gambler.transform.rotation.eulerAngles.y, 90f) && Input.GetButtonDown("Fire1") && canFlash == true && flashesCount > 0)
         {
@@ -45,7 +46,7 @@ public class baterkaBububu : MonoBehaviour
     IEnumerator GambleCooldown()
     {
         canGamble = false;
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(3);
         canGamble = true;
     }
 
@@ -136,7 +137,7 @@ public class baterkaBububu : MonoBehaviour
 
         if (move == 1 && aktualniPozice == 5)
         {
-            obluda.transform.position = new Vector3(5.137068f, 0.7f, -11.49026f);
+            obluda.transform.position = new Vector3(3.86f, 2.47f, -12.79f);
             obluda.transform.rotation = Quaternion.Euler(28.488f, -82.353f, 6.313f);
             flashingPosition = true;
             aktualniPozice++;
