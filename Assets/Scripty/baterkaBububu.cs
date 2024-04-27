@@ -16,15 +16,19 @@ public class baterkaBububu : MonoBehaviour
     public bool playAudio = false;
     private bool canFlash = true;
     private int flashesCount;
+    private Gambler gamblerScript;
 
     private void Start()
     {
         currentTime = timeLimit;
         aud = GetComponent<AudioSource>();
+        gamblerScript = gambler.GetComponent<Gambler>();
+        gamblerScript.FlashesCountChanged += OnFlashesCountChanged;
+        flashesCount = gamblerScript.FlashesCount;
     }
     void Update()
     {
-        Debug.Log(pocetZagembleni);
+        
         if(Input.GetButtonDown("Fire1") && canGamble == true && gambler.transform.rotation.y == 0)
         {          
             StartCoroutine(GambleCooldown());
@@ -46,7 +50,7 @@ public class baterkaBububu : MonoBehaviour
     IEnumerator GambleCooldown()
     {
         canGamble = false;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(0);
         canGamble = true;
     }
 
@@ -126,7 +130,7 @@ public class baterkaBububu : MonoBehaviour
         }
         else if (move == 1 && aktualniPozice == 4 && nextLokace == 1)
         {
-            obluda.transform.position = new Vector3(5.137068f, 0.7f, -11.49026f);
+            obluda.transform.position = new Vector3(3.82f, 0.75f, -12f);
             obluda.transform.rotation = Quaternion.Euler(28.488f, -82.353f, 6.313f);
             flashingPosition = true;
             aktualniPozice++;
@@ -137,12 +141,13 @@ public class baterkaBububu : MonoBehaviour
 
         if (move == 1 && aktualniPozice == 5)
         {
-            obluda.transform.position = new Vector3(3.86f, 2.47f, -12.79f);
+            obluda.transform.position = new Vector3(3.82f, 0.75f, -12f);
             obluda.transform.rotation = Quaternion.Euler(28.488f, -82.353f, 6.313f);
             flashingPosition = true;
             aktualniPozice++;
         }
     }
+    
     private void flashEvent()
     {
         currentTime -= Time.deltaTime;
@@ -164,14 +169,22 @@ public class baterkaBububu : MonoBehaviour
         obluda.transform.position = new Vector3(0, 0, 30);
         aktualniPozice = 0;
         currentTime = timeLimit;
-        canFlash = true;
         flashesCount--;
+        OnFlashesCountChanged(flashesCount);
         flashingPosition = false;
+        yield return new WaitForSeconds(3);
+        canFlash = true;
     }
     private void JumpScare()
     {
         Debug.Log("Prohrál jsi");
     }
-
+    private void OnFlashesCountChanged(int newCount)
+    {
+        flashesCount = newCount;
+        Debug.Log("Poèet zábleskù zmìnìn na: " + flashesCount);
+        // Pøedáváme aktuální hodnotu flashesCount tøídì Gambler
+        Gambler.Instance.UpdateFlashesCount(flashesCount);
+    }
 }
 

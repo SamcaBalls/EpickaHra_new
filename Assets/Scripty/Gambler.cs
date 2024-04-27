@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Gambler : MonoBehaviour
 {
-    public static event Action<int> FlashesCountChanged;
+    public event Action<int> FlashesCountChanged;
     private bool canGamble = true;
     public GameObject gamblerO;
     private Animator animator;
@@ -15,14 +15,21 @@ public class Gambler : MonoBehaviour
     private int pocetGembleni;
     private int generovaneCislo = 10;
     private int pocetzagembleni;
+    private static Gambler instance;
+    public static Gambler Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<Gambler>();
+            }
+            return instance;
+        }
+    }
     public int FlashesCount
     {
         get { return flashesCount; }
-        private set
-        {
-            flashesCount = value;
-            FlashesCountChanged?.Invoke(flashesCount); 
-        }
     }
     void Start()
     {
@@ -59,9 +66,11 @@ public class Gambler : MonoBehaviour
     }
     private void Gamble()
     {
+
         int ovocePicker1 = UnityEngine.Random.Range(0, generovaneCislo);
         int ovocePicker2 = UnityEngine.Random.Range(0, generovaneCislo);
         int ovocePicker3 = UnityEngine.Random.Range(0, generovaneCislo);
+
         int[] ovocePickers = { ovocePicker1, ovocePicker2, ovocePicker3 };
         for(int i = 0; i < 3; i++)
         {
@@ -77,7 +86,7 @@ public class Gambler : MonoBehaviour
                 case 7: Debug.Log("Hrozen"); break;
                 case 8: Debug.Log("Meloun"); break;
                 case 9: Debug.Log("Meloun"); break;
-                case >=10: Debug.Log("Sedmièka"); break;
+                default: Debug.Log("Sedmièka"); break;
             }
         }
         Debug.Log("-------------------------");
@@ -85,10 +94,19 @@ public class Gambler : MonoBehaviour
         {
             Debug.Log("Vyhral jsi");
         }
-        if(ovocePicker1 / 2 == ovocePicker2 / 2 && ovocePicker1 / 2 == ovocePicker3 / 2 && ovocePicker1 != 10)
+        if (ovocePickers[0] / 2 == ovocePickers[1] / 2 && ovocePickers[1] / 2 == ovocePickers[2] / 2 && ovocePickers[0] < 10)
         {
             flashesCount++;
+            OnFlashesCountChanged(flashesCount);
             Debug.Log("Máš " + flashesCount + " flashù.");
         }
+    }
+    private void OnFlashesCountChanged(int newCount)
+    {
+        FlashesCountChanged?.Invoke(newCount);
+    }
+    public void UpdateFlashesCount(int newCount)
+    {
+        flashesCount = newCount;
     }
 }
