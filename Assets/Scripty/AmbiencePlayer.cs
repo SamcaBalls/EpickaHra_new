@@ -5,7 +5,6 @@ using UnityEngine;
 public class AmbiencePlayer : MonoBehaviour
 {
     public AudioClip soundClip;
-    public float Volume = 0.05f;
     private AudioSource audioSource;
 
     void Start()
