@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class AmbiencePlayer : MonoBehaviour
 {
-    private AudioSource audi;
-    // Start is called before the first frame update
+    public AudioClip soundClip;
+    public float Volume = 0.05f;
+    private AudioSource audioSource;
+
     void Start()
     {
-        audi = GetComponent<AudioSource>();
-        StartCoroutine(MusicAmb());
+        audioSource = GetComponent<AudioSource>();
+        Invoke("PlaySound", 47f); // Invoke the method PlaySound after 47 seconds
     }
 
-    // Update is called once per frame
-    void Update()
+    void PlaySound()
     {
-        
+
+        audioSource.loop = true; // Set the audio to loop
+        audioSource.clip = soundClip;
+        audioSource.Play();
     }
-    IEnumerator MusicAmb()
-    {
-        yield return new WaitForSeconds(1);
-        audi.Play();
-    }
+
 }

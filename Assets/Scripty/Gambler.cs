@@ -10,9 +10,11 @@ public class Gambler : MonoBehaviour
     public GameObject gamblerO;
     private Animator animator;
     public GameObject automat;
+    public GameObject koule;
     private int flashesCount = 3;
     private int pocetGembleni;
     private int generovaneCislo = 10;
+    private int pocetzagembleni;
     public int FlashesCount
     {
         get { return flashesCount; }
@@ -27,7 +29,7 @@ public class Gambler : MonoBehaviour
         animator = automat.GetComponent<Animator>();
         
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -37,6 +39,7 @@ public class Gambler : MonoBehaviour
             animator.SetTrigger("Gamble");
             StartCoroutine(GambleCooldown());
             pocetGembleni++;
+            pocetzagembleni++;
         }
         if(pocetGembleni >= 5)
         {
@@ -44,6 +47,8 @@ public class Gambler : MonoBehaviour
             Debug.Log("Šance zvíšena");
             pocetGembleni = 0;
         }
+        baterkaBububu script = koule.GetComponent<baterkaBububu>();
+        pocetzagembleni = script.pocetZagembleni;
     }
         
     IEnumerator GambleCooldown()
