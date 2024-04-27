@@ -42,7 +42,7 @@ public class baterkaBububu : MonoBehaviour
         {
             flashEvent();   
         }
-        if(Mathf.Approximately(gambler.transform.rotation.eulerAngles.y, 90f) && Input.GetButtonDown("Fire1") && canFlash == true)
+        if(Mathf.Approximately(gambler.transform.rotation.eulerAngles.y, 90f) && Input.GetButtonDown("Fire1") && canFlash == true && flashesCount > 0)
         {
             StartCoroutine(Flash());
         }

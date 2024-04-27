@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 516536286}
   - component: {fileID: 516536285}
   - component: {fileID: 516536284}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hala
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -694,7 +694,7 @@ GameObject:
   - component: {fileID: 686517512}
   - component: {fileID: 686517511}
   - component: {fileID: 686517510}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -834,7 +834,7 @@ GameObject:
   - component: {fileID: 793907247}
   - component: {fileID: 793907246}
   - component: {fileID: 793907250}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Podstava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1597,7 +1597,7 @@ GameObject:
   - component: {fileID: 1249657946}
   - component: {fileID: 1249657945}
   - component: {fileID: 1249657944}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1950,6 +1950,30 @@ PrefabInstance:
       propertyPath: ShapeModule.angle
       value: 66.02
       objectReference: {fileID: 0}
+    - target: {fileID: 7147078326997274911, guid: 789f1812bcf7d974dac2fb17aaa12723, type: 3}
+      propertyPath: CollisionModule.type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147078326997274911, guid: 789f1812bcf7d974dac2fb17aaa12723, type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147078326997274911, guid: 789f1812bcf7d974dac2fb17aaa12723, type: 3}
+      propertyPath: CollisionModule.radiusScale
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147078326997274911, guid: 789f1812bcf7d974dac2fb17aaa12723, type: 3}
+      propertyPath: CollisionModule.m_Bounce.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147078326997274911, guid: 789f1812bcf7d974dac2fb17aaa12723, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147078326997274911, guid: 789f1812bcf7d974dac2fb17aaa12723, type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1967,7 +1991,7 @@ GameObject:
   - component: {fileID: 1761252237}
   - component: {fileID: 1761252236}
   - component: {fileID: 1761252235}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2124,6 +2148,30 @@ PrefabInstance:
     - target: {fileID: 7147078326997274911, guid: 789f1812bcf7d974dac2fb17aaa12723, type: 3}
       propertyPath: ShapeModule.angle
       value: 66.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147078326997274911, guid: 789f1812bcf7d974dac2fb17aaa12723, type: 3}
+      propertyPath: CollisionModule.type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147078326997274911, guid: 789f1812bcf7d974dac2fb17aaa12723, type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147078326997274911, guid: 789f1812bcf7d974dac2fb17aaa12723, type: 3}
+      propertyPath: CollisionModule.radiusScale
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147078326997274911, guid: 789f1812bcf7d974dac2fb17aaa12723, type: 3}
+      propertyPath: CollisionModule.m_Bounce.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147078326997274911, guid: 789f1812bcf7d974dac2fb17aaa12723, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147078326997274911, guid: 789f1812bcf7d974dac2fb17aaa12723, type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2463,6 +2511,30 @@ PrefabInstance:
     - target: {fileID: 7147078326997274911, guid: 789f1812bcf7d974dac2fb17aaa12723, type: 3}
       propertyPath: ShapeModule.angle
       value: 66.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147078326997274911, guid: 789f1812bcf7d974dac2fb17aaa12723, type: 3}
+      propertyPath: CollisionModule.type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147078326997274911, guid: 789f1812bcf7d974dac2fb17aaa12723, type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147078326997274911, guid: 789f1812bcf7d974dac2fb17aaa12723, type: 3}
+      propertyPath: CollisionModule.radiusScale
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147078326997274911, guid: 789f1812bcf7d974dac2fb17aaa12723, type: 3}
+      propertyPath: CollisionModule.m_Bounce.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147078326997274911, guid: 789f1812bcf7d974dac2fb17aaa12723, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147078326997274911, guid: 789f1812bcf7d974dac2fb17aaa12723, type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
