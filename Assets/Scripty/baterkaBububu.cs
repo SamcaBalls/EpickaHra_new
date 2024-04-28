@@ -50,7 +50,7 @@ public class baterkaBububu : MonoBehaviour
     IEnumerator GambleCooldown()
     {
         canGamble = false;
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(2.5f);
         canGamble = true;
     }
 
