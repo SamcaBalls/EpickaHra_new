@@ -21,6 +21,7 @@ public class Gambler : MonoBehaviour
     public GameObject door;
     private bool chillyGalewow = false;
     public GameObject chillyGale;
+    private bool chillyCame = false;
     public static Gambler Instance
     {
         get
@@ -53,6 +54,7 @@ public class Gambler : MonoBehaviour
             StartCoroutine(GambleCooldown());
             pocetGembleni++;
             pocetzagembleni++;
+            time = 0;
         }
         if(pocetGembleni >= 5)
         {
@@ -60,11 +62,11 @@ public class Gambler : MonoBehaviour
             Debug.Log("Šance zvíšena");
             pocetGembleni = 0;
         }
-        if (time >= 15)
+        if (time >= 5)
         {
             chillyGalewow = true;
         }
-        if (chillyGalewow && this.transform.rotation == Quaternion.Euler(0, 0, 0))
+        if (chillyGalewow && (this.transform.rotation == Quaternion.Euler(0, 0, 0) || this.transform.rotation == Quaternion.Euler(0, -90, 0)))
         {
             ChillyGaleIsCumin();
         }
@@ -129,5 +131,7 @@ public class Gambler : MonoBehaviour
         door.transform.rotation = Quaternion.Euler(0, 42.508f, 0);
         chillyGale.SetActive(true);
         chillyGale.transform.position = new Vector3(this.transform.position.x,this.transform.position.y,this.transform.position.z - 2);
+        chillyCame = true;
+
     }
 }
