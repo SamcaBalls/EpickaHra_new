@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Gambler : MonoBehaviour
@@ -16,6 +17,10 @@ public class Gambler : MonoBehaviour
     private int generovaneCislo = 10;
     private int pocetzagembleni;
     private static Gambler instance;
+    private float time = 0;
+    public GameObject door;
+    private bool chillyGalewow = false;
+    public GameObject chillyGale;
     public static Gambler Instance
     {
         get
@@ -40,6 +45,7 @@ public class Gambler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        time += Time.deltaTime;
         if (Input.GetButtonDown("Fire1") && canGamble == true && gamblerO.transform.rotation.y == 0) 
         {
             Gamble();
@@ -54,10 +60,18 @@ public class Gambler : MonoBehaviour
             Debug.Log("Šance zvíšena");
             pocetGembleni = 0;
         }
+        if (time >= 15)
+        {
+            chillyGalewow = true;
+        }
+        if (chillyGalewow && this.transform.rotation == Quaternion.Euler(0, 0, 0))
+        {
+            ChillyGaleIsCumin();
+        }
         baterkaBububu script = koule.GetComponent<baterkaBububu>();
         pocetzagembleni = script.pocetZagembleni;
     }
-        
+
     IEnumerator GambleCooldown()
     {
         canGamble = false;
@@ -108,5 +122,12 @@ public class Gambler : MonoBehaviour
     public void UpdateFlashesCount(int newCount)
     {
         flashesCount = newCount;
+    }
+    private void ChillyGaleIsCumin()
+    {
+        door.transform.position = new Vector3(11.999f, 2.24f, -7.962f);
+        door.transform.rotation = Quaternion.Euler(0, 42.508f, 0);
+        chillyGale.SetActive(true);
+        chillyGale.transform.position = new Vector3(this.transform.position.x,this.transform.position.y,this.transform.position.z - 2);
     }
 }
