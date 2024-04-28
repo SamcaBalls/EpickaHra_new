@@ -8,7 +8,7 @@ public class baterkaBububu : MonoBehaviour
     public GameObject gambler;
     private bool canGamble = true;
     public int pocetZagembleni = 0;
-    private int aktualniPozice = 0;
+    public int aktualniPozice = 0;
     private bool flashingPosition = false;
     private float timeLimit = 5f;
     private float currentTime = 0f;
@@ -28,7 +28,6 @@ public class baterkaBububu : MonoBehaviour
     }
     void Update()
     {
-        
         if(Input.GetButtonDown("Fire1") && canGamble == true && gambler.transform.rotation.y == 0)
         {          
             StartCoroutine(GambleCooldown());
@@ -57,7 +56,6 @@ public class baterkaBububu : MonoBehaviour
     private void MoveChance()
     {
         int move = Random.Range(0, 2);
-        Debug.Log(move);
         if(move == 1)
         {
             switch(aktualniPozice)
@@ -67,10 +65,11 @@ public class baterkaBububu : MonoBehaviour
                 case 2: tretiPozice(move); break;
                 case 3: ctvrtaPozice(move); break;
                 case 4: pataPozice(move); break;
-                case 5: sestaPozice(move); break;
+                default: sestaPozice(move); break;
             }
         }
         pocetZagembleni = 0;
+        gamblerScript.zvukPrisun = false;
     }
     private void prvniPozice(int move)
     {
@@ -133,18 +132,18 @@ public class baterkaBububu : MonoBehaviour
             obluda.transform.position = new Vector3(3.82f, 0.75f, -12f);
             obluda.transform.rotation = Quaternion.Euler(28.488f, -82.353f, 6.313f);
             flashingPosition = true;
-            aktualniPozice++;
+            aktualniPozice = 0;
         }
     }
     private void sestaPozice(int move)
     {
 
-        if (move == 1 && aktualniPozice == 5)
+        if (move == 1 && aktualniPozice >= 5)
         {
             obluda.transform.position = new Vector3(3.82f, 0.75f, -12f);
             obluda.transform.rotation = Quaternion.Euler(28.488f, -82.353f, 6.313f);
             flashingPosition = true;
-            aktualniPozice++;
+            aktualniPozice = 0;
         }
     }
     
@@ -185,6 +184,22 @@ public class baterkaBububu : MonoBehaviour
         Debug.Log("Poèet zábleskù zmìnìn na: " + flashesCount);
         // Pøedáváme aktuální hodnotu flashesCount tøídì Gambler
         Gambler.Instance.UpdateFlashesCount(flashesCount);
+    }
+    public void MoveChanceFake(int move)
+    {
+        if (move == 1)
+        {
+            switch (aktualniPozice)
+            {
+                case 0: prvniPozice(move); break;
+                case 1: druhaPozice(move); break;
+                case 2: tretiPozice(move); break;
+                case 3: ctvrtaPozice(move); break;
+                case 4: pataPozice(move); break;
+                default: sestaPozice(move); break;
+            }
+        }
+        gamblerScript.zvukPrisun = false;
     }
 }
 

@@ -29,6 +29,9 @@ public class Gambler : MonoBehaviour
     public GameObject okenko2;
     public GameObject okenko3;
     private Animator[] animators;
+    private baterkaBububu script;
+    public bool zvukPrisun;
+    
     public static Gambler Instance
     {
         get
@@ -54,6 +57,7 @@ public class Gambler : MonoBehaviour
         animators[0] = animatorGembl1;
         animators[1] = animatorGembl2;
         animators[2] = animatorGembl3;
+        script = koule.GetComponent<baterkaBububu>();
     }
     
     // Update is called once per frame
@@ -83,8 +87,12 @@ public class Gambler : MonoBehaviour
         {
             ChillyGaleIsCumin(chillyCame);
         }
-        baterkaBububu script = koule.GetComponent<baterkaBububu>();
-        pocetzagembleni = script.pocetZagembleni;
+        if (zvukPrisun && (this.transform.rotation == Quaternion.Euler(0, 0, 0) || this.transform.rotation == Quaternion.Euler(0, -90, 0)))
+        {
+            script.MoveChanceFake(1);
+        }
+
+            pocetzagembleni = script.pocetZagembleni;
     }
 
     IEnumerator GambleCooldown()
@@ -102,6 +110,7 @@ public class Gambler : MonoBehaviour
         Debug.Log(ovocePicker1);
         Debug.Log(ovocePicker2);
         Debug.Log(ovocePicker3);
+
         int[] ovocePickers = { ovocePicker1, ovocePicker2, ovocePicker3 };
         for(int i = 0; i < 3; i++)
         {
@@ -124,6 +133,10 @@ public class Gambler : MonoBehaviour
        if(ovocePicker1 >= 10 && ovocePicker2 >= 10 && ovocePicker3 >= 10)
         {
             Debug.Log("Vyhral jsi");
+        }
+        if (ovocePicker1 / 2 == 3 && ovocePicker1 / 2 == ovocePicker2 / 2 && ovocePicker3 / 2 == ovocePicker1 / 2)
+        {
+            StartCoroutine(ZvukEvent());
         }
         if (ovocePickers[0] / 2 == ovocePickers[1] / 2 && ovocePickers[1] / 2 == ovocePickers[2] / 2 && ovocePickers[0] < 10)
         {
@@ -148,5 +161,12 @@ public class Gambler : MonoBehaviour
         chillyGale.transform.position = new Vector3(this.transform.position.x,this.transform.position.y,this.transform.position.z - 2);
         chillyCame = true;
 
+    }
+    private IEnumerator ZvukEvent()
+    {
+        yield return new WaitForSeconds(2);
+        Debug.Log("Pouštím zvuk");
+        script.aktualniPozice += 2;
+        zvukPrisun = true;
     }
 }
