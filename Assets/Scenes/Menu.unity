@@ -2133,6 +2133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb00a0b137a5ac4faafd564e8bdf1dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textRectTransform: {fileID: 1800750873}
+  moveSpeed: 350
+  moveDistance: 900
 --- !u!1 &1867948065
 GameObject:
   m_ObjectHideFlags: 0
