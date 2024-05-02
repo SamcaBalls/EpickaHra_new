@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,9 +8,10 @@ using UnityEngine.UI;
 public class MainMenuScript : MonoBehaviour
 {
     private bool CanPress = true;
-    public RectTransform textRectTransform; // Reference to the RectTransform of the text
-    public float moveSpeed = 50f; // Speed at which the text moves up
-    public float moveDistance = 100f; // Distance to move the text
+    public RectTransform textRectTransform; 
+    public float moveSpeed = 50f; 
+    public Image Black;
+    public Animator anim;
 
     private Vector3 initialPosition;
     private bool isMoving = false;
@@ -23,16 +25,18 @@ public class MainMenuScript : MonoBehaviour
     {
         if (isMoving)
         {
-            // Move the text upwards
+            StartCoroutine(Fading());
+            //text pujde nahoru
             textRectTransform.localPosition += Vector3.up * moveSpeed * Time.deltaTime;
-
-            // Check if the text has moved the desired distance
-            if (Vector3.Distance(textRectTransform.localPosition, initialPosition) >= moveDistance)
-            {
-                isMoving = false;
-                LoadNextScene();
-            }
         }
+    }
+    IEnumerator Fading()
+    {
+        anim.SetBool("Fade", true);
+        yield return new WaitUntil(() => Black.color.a == 1);
+        isMoving = false;
+        LoadNextScene();
+        
     }
 
     public void PlayGame()
