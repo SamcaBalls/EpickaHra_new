@@ -64,7 +64,7 @@ public class Gambler : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        if (Input.GetButtonDown("Fire1") && canGamble == true && gamblerO.transform.rotation.y == 0) 
+        if (Input.GetButtonDown("Fire1") && canGamble == true && (Mathf.Approximately(gamblerO.transform.rotation.eulerAngles.y, 0)) && (Mathf.Approximately(transform.rotation.eulerAngles.x, 0))) 
         {
             Gamble();
             animator.SetTrigger("Gamble");
@@ -92,7 +92,6 @@ public class Gambler : MonoBehaviour
             script.MoveChanceFake(1);
         }
 
-            pocetzagembleni = script.pocetZagembleni;
     }
 
     IEnumerator GambleCooldown()

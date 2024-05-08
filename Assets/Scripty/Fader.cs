@@ -12,8 +12,6 @@ public class Fader : MonoBehaviour
     private int direction = 0;
     private float time = 0f;
 
-    private bool ZatimNic = false;
-
     public float speedScale = 1f;
     public Color fadeColor = Color.black;
     public AnimationCurve Curve = new AnimationCurve(new Keyframe(1,0), new Keyframe(0.5f,0.5f,-1.5f,-1.5f), new Keyframe(1,0));
