@@ -33,7 +33,7 @@ public class MainMenuScript : MonoBehaviour
     IEnumerator Fading()
     {
         anim.SetBool("Fade", true);
-        yield return new WaitUntil(() => Black.color.a == 1);
+        yield return new WaitForSeconds(5);
         isMoving = false;
         LoadNextScene();
         

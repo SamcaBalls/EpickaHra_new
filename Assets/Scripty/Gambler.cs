@@ -29,7 +29,7 @@ public class Gambler : MonoBehaviour
     public GameObject okenko2;
     public GameObject okenko3;
     private Animator[] animators;
-    private baterkaBububu script;
+    public baterkaBububu script;
     public bool zvukPrisun;
     
     public static Gambler Instance
@@ -102,7 +102,6 @@ public class Gambler : MonoBehaviour
     }
     private void Gamble()
     {
-
         int ovocePicker1 = UnityEngine.Random.Range(0, generovaneCislo);
         int ovocePicker2 = UnityEngine.Random.Range(0, generovaneCislo);
         int ovocePicker3 = UnityEngine.Random.Range(0, generovaneCislo);

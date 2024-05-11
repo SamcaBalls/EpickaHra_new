@@ -9,23 +9,10 @@ public class baterkaBububu : MonoBehaviour
     private bool canGamble = true;
     public int pocetZagembleni = 0;
     public int aktualniPozice = 0;
-    private bool flashingPosition = false;
-    private float timeLimit = 5f;
-    private float currentTime = 0f;
-    private AudioSource aud;
+    public bool flashingPosition = false;
     public bool playAudio = false;
-    private bool canFlash = true;
-    private int flashesCount;
-    private Gambler gamblerScript;
+    public Gambler gamblerScript;
 
-    private void Start()
-    {
-        currentTime = timeLimit;
-        aud = GetComponent<AudioSource>();
-        gamblerScript = gambler.GetComponent<Gambler>();
-        gamblerScript.FlashesCountChanged += OnFlashesCountChanged;
-        flashesCount = gamblerScript.FlashesCount;
-    }
     void Update()
     {
         if(Input.GetButtonDown("Fire1") && canGamble == true && gambler.transform.rotation.y == 0)
@@ -36,14 +23,6 @@ public class baterkaBububu : MonoBehaviour
         if(pocetZagembleni == 3)
         {
             MoveChance();
-        }
-        if (flashingPosition == true)
-        {
-            flashEvent();   
-        }
-        if(Mathf.Approximately(gambler.transform.rotation.eulerAngles.y, 90f) && Input.GetButtonDown("Fire1") && canFlash == true && flashesCount > 0)
-        {
-            StartCoroutine(Flash());
         }
     }
     IEnumerator GambleCooldown()
@@ -66,10 +45,13 @@ public class baterkaBububu : MonoBehaviour
                 case 3: ctvrtaPozice(move); break;
                 case 4: pataPozice(move); break;
                 default: sestaPozice(move); break;
+                    
             }
+            aktualniPozice++;
         }
         pocetZagembleni = 0;
         gamblerScript.zvukPrisun = false;
+        
     }
     private void prvniPozice(int move)
     {
@@ -77,7 +59,6 @@ public class baterkaBububu : MonoBehaviour
         {
             obluda.transform.position = new Vector3(31.21f, 1.65f, -11.89f);
             obluda.transform.rotation = Quaternion.Euler(3.912f, -90f, -24.685f);
-            aktualniPozice++;
         }
     }
     private void druhaPozice(int move)
@@ -86,7 +67,6 @@ public class baterkaBububu : MonoBehaviour
         {
             obluda.transform.position = new Vector3(23f, 1.65f, -7.2f);
             obluda.transform.rotation = Quaternion.Euler(0, -90, 29f);
-            aktualniPozice++;
         }
     }
     private void tretiPozice(int move)
@@ -95,7 +75,6 @@ public class baterkaBububu : MonoBehaviour
         {
             obluda.transform.position = new Vector3(21.8f, 7f, -16.08f);
             obluda.transform.rotation = Quaternion.Euler(-0.323f, -90, -148.362f);
-            aktualniPozice++;
         }
     }
     private void ctvrtaPozice(int move)
@@ -107,13 +86,11 @@ public class baterkaBububu : MonoBehaviour
             {
                 obluda.transform.position = new Vector3(16.16127f, 0.9821391f, -17.34027f);
                 obluda.transform.rotation = Quaternion.Euler(5.877f, -73.12f, -25.142f);
-                aktualniPozice++;
             }
             else if(move == 1 && aktualniPozice == 3 && nextLokace == 1)
             {
                 obluda.transform.position = new Vector3(11.59219f, 1.412593f, -9.544255f);
                 obluda.transform.rotation = Quaternion.Euler(19.526f, -101.96f, -23.445f);
-                aktualniPozice++;
             }
         }
         
@@ -125,7 +102,6 @@ public class baterkaBububu : MonoBehaviour
         {
             obluda.transform.position = new Vector3(6.946588f, 2.6f, -17f);
             obluda.transform.rotation = Quaternion.Euler(41.413f, -36.408f, -36.408f);
-            aktualniPozice++;
         }
         else if (move == 1 && aktualniPozice == 4 && nextLokace == 1)
         {
@@ -147,44 +123,7 @@ public class baterkaBububu : MonoBehaviour
         }
     }
     
-    private void flashEvent()
-    {
-        currentTime -= Time.deltaTime;
-        if (currentTime <= 0f)
-        {
-            JumpScare();
-        } else
-        {
-            Flash();
-        }
-    }
-    IEnumerator Flash()
-    {
-        canFlash = false;
-        Debug.Log("flashing...");
-        yield return new WaitForSeconds(1);
-        aud.Play();
-        playAudio = true;
-        obluda.transform.position = new Vector3(0, 0, 30);
-        aktualniPozice = 0;
-        currentTime = timeLimit;
-        flashesCount--;
-        OnFlashesCountChanged(flashesCount);
-        flashingPosition = false;
-        yield return new WaitForSeconds(3);
-        canFlash = true;
-    }
-    private void JumpScare()
-    {
-        Debug.Log("Prohrál jsi");
-    }
-    private void OnFlashesCountChanged(int newCount)
-    {
-        flashesCount = newCount;
-        Debug.Log("Poèet zábleskù zmìnìn na: " + flashesCount);
-        // Pøedáváme aktuální hodnotu flashesCount tøídì Gambler
-        Gambler.Instance.UpdateFlashesCount(flashesCount);
-    }
+    
     public void MoveChanceFake(int move)
     {
         if (move == 1)

@@ -6,8 +6,8 @@ using UnityEngine;
 public class CameraMovementScript : MonoBehaviour
 {
     public float sensitivity = 0.15f;
-    public float maxX = 10f;
-    public float maxY = 10f;
+    public float maxX = 0.2f;
+    public float maxY = 0.2f;
 
     private Vector3 initialPosition;
 
@@ -45,12 +45,12 @@ public class CameraMovementScript : MonoBehaviour
     }
     void TurningOnZ()
     {
-        float zMovement = Input.GetAxis("Mouse X");
-        float yMovement = Input.GetAxis("Mouse Y");
+        Vector3 mousePosition = Input.mousePosition;
 
-        Vector3 worldMovement = Camera.main.transform.forward * zMovement + Camera.main.transform.up * yMovement;
+        float zMovement = (mousePosition.x / Screen.width) * 2 - 1;
+        float yMovement = (mousePosition.y / Screen.height) * 2 - 1;
 
-        Vector3 newPosition = initialPosition + worldMovement * sensitivity;
+        Vector3 newPosition = initialPosition + new Vector3(0, yMovement, zMovement) * sensitivity;
 
         newPosition.z = Mathf.Clamp(newPosition.z, initialPosition.z - maxX, initialPosition.z + maxX);
         newPosition.y = Mathf.Clamp(newPosition.y, initialPosition.y - maxY, initialPosition.y + maxY);
