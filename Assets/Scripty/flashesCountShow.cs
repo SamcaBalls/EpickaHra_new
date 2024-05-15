@@ -31,7 +31,6 @@ public class flashesCountShow : MonoBehaviour
     public GameObject c18;
     public GameObject c19;
     public GameObject c20;
-    private int currentFlashesCount;
     void Start()
     {
         gamblerScript = gambler.GetComponent<Gambler>();
@@ -46,18 +45,14 @@ public class flashesCountShow : MonoBehaviour
 
     void DisplayCislo()
     {
-        currentFlashesCount = flashesCount;
         GameObject[] cArray = { c0, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20 };
         
-        if(currentFlashesCount == flashesCount)
+        for(int i = 0; i < cArray.Length; i++)
         {
-            cArray[flashesCount].SetActive(true);
+            cArray[i].gameObject.SetActive(false);
         }
-        else
-        {
-            cArray[flashesCount].SetActive(false);
-        }
-        
+        cArray[flashesCount].gameObject.SetActive(true);
+
     }
 
     private void OnFlashesCountChanged(int newCount)
